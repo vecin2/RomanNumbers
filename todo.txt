@@ -1,0 +1,1 @@
+--------refactor each to get the index|value
