@@ -1,0 +1,1 @@
+modify expand number to  add number multiple of ten so we remove initial if
