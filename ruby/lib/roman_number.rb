@@ -29,7 +29,7 @@ class RomanNumber
     end
     return expanded_arabic
   end
- 
+
 
   def compute_roman(current_arabic)
     if substraction_notation(current_arabic)!=''
@@ -41,16 +41,17 @@ class RomanNumber
 
 
   def substraction_notation(current_arabic)
-    roman_symbol=''
-    if @@arabics[current_arabic+1]!=''
-      roman_symbol=combine_roman_symbols(1,current_arabic+1)
-    elsif @@arabics[current_arabic+10]!=''
-      roman_symbol=combine_roman_symbols(10,current_arabic+10)
-    elsif @@arabics[current_arabic+100]!=''
-      roman_symbol=combine_roman_symbols(100,current_arabic+100)
-    end
+    return compose_substracted_roman(1,current_arabic) +
+      compose_substracted_roman(10,current_arabic) +
+      compose_substracted_roman(100,current_arabic)
+  end
 
-    return roman_symbol
+
+  def compose_substracted_roman(prefix,exact_arabic) 
+    if @@arabics[exact_arabic+prefix]!=''
+      return @@arabics[prefix]+@@arabics[exact_arabic+prefix]
+    end
+    return ''
   end
 
 
@@ -62,11 +63,6 @@ class RomanNumber
       current_arabic = current_arabic - arabic_to_decrease
     end
     roman_symbol
-  end
-
-
-  def combine_roman_symbols(prefix,exact_arabic) 
-    return @@arabics[prefix]+@@arabics[exact_arabic]
   end
 
 
